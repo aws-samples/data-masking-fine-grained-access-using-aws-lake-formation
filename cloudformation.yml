@@ -445,6 +445,8 @@ Resources:
   MacieBucket:
     Type: 'AWS::S3::Bucket'
     Properties:
+      VersioningConfiguration:
+        Status: Enabled
       BucketName: !Sub '${Prefix}-macie-${AWS::Region}-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
@@ -463,6 +465,8 @@ Resources:
   GlueBucket:
     Type: AWS::S3::Bucket
     Properties:
+      VersioningConfiguration:
+        Status: Enabled
       BucketName: !Sub '${Prefix}-glue-${AWS::Region}-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
@@ -486,6 +490,8 @@ Resources:
   AthenaBucket:
     Type: AWS::S3::Bucket
     Properties:
+      VersioningConfiguration:
+        Status: Enabled
       BucketName: !Sub '${Prefix}-athena-${AWS::Region}-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
@@ -503,6 +509,8 @@ Resources:
   AssetsBucket:
     Type: AWS::S3::Bucket
     Properties:
+      VersioningConfiguration:
+        Status: Enabled
       BucketName: !Sub '${Prefix}-assets-${AWS::Region}-${AWS::AccountId}'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
@@ -521,6 +529,8 @@ Resources:
   LoggingBucket:
     Type: AWS::S3::Bucket
     Properties:
+      VersioningConfiguration:
+        Status: Enabled
       BucketName: !Sub '${Prefix}-logging-${AWS::Region}-${AWS::AccountId}'
       AccessControl: LogDeliveryWrite
       BucketEncryption:
@@ -716,8 +726,8 @@ Resources:
             DB_PASS=$(aws secretsmanager get-secret-value --secret-id dcp-MySQLDB-Secret --query SecretString --output text | jq -r '.password')
             cd /tmp
             wget https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem
-            wget https://raw.githubusercontent.com/iriscferreira/mask-data-blog/main/scripts/fake-dataset.py
-            wget https://raw.githubusercontent.com/iriscferreira/mask-data-blog/main/scripts/load-data-into-mysql.sql
+            wget https://raw.githubusercontent.com/aws-samples/data-masking-fine-grained-access-using-aws-lake-formation/main/scripts/fake-dataset.py
+            wget https://raw.githubusercontent.com/aws-samples/data-masking-fine-grained-access-using-aws-lake-formation/main/scripts/load-data-into-mysql.sql
             python3 -m venv venv
             source ./venv/bin/activate
             pip install Faker
@@ -923,7 +933,7 @@ Resources:
           ASSETS_BUCKET: !Ref AssetsBucket
           ACCOUNT_ID: !Ref AWS::AccountId
           KEY_NAME: 'alias/encryptionDataRow'
-          SCRIPT_URL: https://raw.githubusercontent.com/iriscferreira/mask-data-blog/main/scripts/glue-job-mask-data-script.py
+          SCRIPT_URL: https://raw.githubusercontent.com/aws-samples/data-masking-fine-grained-access-using-aws-lake-formation/main/scripts/glue-job-mask-data-script.py
       Code:
         ZipFile: |
           const https = require('https');
