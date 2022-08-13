@@ -47,7 +47,7 @@ Please refer to this [blog post]() for the detailed instructions on how to use t
 
 1. The data source will be a database, like Amazon RDS in our case. It could be a database on an Amazon EC2 instance, running in an on-premise datacenter, or even on other public clouds;
 
-2. The AWS Database Migration Service (DMS) makes a continuous Capture-Data-Change (CDC) on this database, bringing the information to the "dcp-macie" bucket that will store the data without any treatment yet;
+2. The AWS Database Migration Service (DMS) makes a full load on this database, bringing the information to the "dcp-macie" bucket that will store the data without any treatment yet;
 
 3. Then a Personal Identifiable Information (PII) detection pipeline is started. Amazon Macie analyzes the files and identifies fields that are considered sensitive. You can customize what these fields are, and in this case we are doing this to identify the bank account number;
 
