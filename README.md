@@ -65,7 +65,7 @@ Please refer to this [blog post]() for the detailed instructions on how to use t
 ## Deployment on AWS
 
 1.	Sign in to your AWS account
-2.	Download the CloudFormation template file [here](https://gitlab.aws.dev/irisferr/mask-data-blog/-/raw/187abe2d082381c762b6e96e4a6b67057368713d/cloudformation.yml).
+2.	Download the CloudFormation template file [here](cloudformation.yml).
 3.	Then upload the file in the [CloudFormation create stack page](https://console.aws.amazon.com/cloudformation/home#/stacks/create/template) to deploy the solution.
 4.	Provide the CloudFormation stack a stack name or leave the value as default (“dcp”).
 5.	Provide the CloudFormation stack a password on the TestUserPassword parameter for Lake Formation personas to log in to the AWS Management Console.
