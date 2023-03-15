@@ -39,7 +39,7 @@ For the scenario where a user cannot view the sensitive data itself but can use 
     - Card
 
  ## Deployment
-Please refer to this [blog post]() for the detailed instructions on how to use the solution.
+Please refer to this [blog post](https://aws.amazon.com/pt/blogs/aws-brasil/mascaramento-de-dados-e-acesso-refinado-usando-o-amazon-macie-e-aws-lake-formation/) for the detailed instructions on how to use the solution.
 
 ## Solution Overview
 
