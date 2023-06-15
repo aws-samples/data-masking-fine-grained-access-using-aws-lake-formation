@@ -532,7 +532,7 @@ Resources:
       VersioningConfiguration:
         Status: Enabled
       BucketName: !Sub '${Prefix}-logging-${AWS::Region}-${AWS::AccountId}'
-      AccessControl: LogDeliveryWrite
+      # AccessControl: LogDeliveryWrite
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -874,7 +874,7 @@ Resources:
     Properties:
       Architectures: 
         - arm64
-      Runtime: nodejs12.x
+      Runtime: nodejs16.x
       Handler: index.handler
       MemorySize: 256
       FunctionName: !Sub '${Prefix}-start-glue-workflow'
@@ -922,7 +922,7 @@ Resources:
   CreateGlueScriptLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      Runtime: nodejs12.x
+      Runtime: nodejs16.x
       Handler: index.handler
       MemorySize: 256
       FunctionName: !Sub '${Prefix}-create-upload-glue-script'
