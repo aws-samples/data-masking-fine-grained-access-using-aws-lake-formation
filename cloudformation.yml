@@ -270,9 +270,18 @@ Resources:
     Properties:
       RouteTableId: !Ref PrivateRouteTable
       SubnetId: !Ref PrivateSubnet1
+  
+  VPCEndpointForDMSS3Target:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcEndpointType: Gateway
+      VpcId: !Ref VPC
+      ServiceName: !Sub com.amazonaws.${AWS::Region}.s3
+      RouteTableIds:
+        - !Ref PublicRouteTable
 
   DMSSG:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: AWS::EC2::SecurityGroup
     DependsOn:
       - PrivateSubnet0
       - PrivateSubnet1
@@ -1357,7 +1366,6 @@ Resources:
             Action:
               - s3:PutObject
               - s3:DeleteObject
-              - s3:ListBucket
               - s3:PutObjectTagging
             Resource:
               - !GetAtt MacieBucket.Arn
@@ -1367,7 +1375,7 @@ Resources:
               - s3:ListBucket
             Resource:
               - !GetAtt MacieBucket.Arn
-              - !Sub "${MacieBucket.Arn}/*"
+              - !Sub "${MacieBucket.Arn}"
       Roles:
         - dms-vpc-role
 
