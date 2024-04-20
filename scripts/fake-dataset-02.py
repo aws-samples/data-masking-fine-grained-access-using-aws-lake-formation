@@ -35,7 +35,7 @@ account_id = sts.get_caller_identity()["Account"]
 s3 = boto3.client('s3')
 
 
-BUCKET_NAME= f"dcp-macie-{region}-{account_id}"
+BUCKET_NAME= f'assets-workshop-reinforce-us-east-1-{account_id}'
 S3_FILE_PATH='csv/fake_profile.csv'
 LOCAL_FILE_PATH='fake_profile.csv'
 
