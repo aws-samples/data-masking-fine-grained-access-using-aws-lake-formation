@@ -48,6 +48,7 @@ def upload_file(file_name):
         s3_client.upload_file(file_name, BUCKET_NAME, f"csv/{file_name}")
         print(f"Arquivo CSV '{file_name}' enviado com sucesso para o S3 em csv/{file_name}.")
     except:
+        print(f"Arquivo CSV '{file_name}' enviado com ERRO para o S3 em csv/{file_name}.")
         return False
     return True
 
@@ -80,9 +81,11 @@ df_fake_banks = pd.DataFrame(fake_banks)
 # data frame to csv
 
 df_fake_profile.to_csv('fake_profile.csv')
+print('CRIOU O ARQUIVO fake_profile.csv')
 upload_file('fake_profile.csv')
 
 df_fake_credit_cards.to_csv('fake_credit_cards.csv')
+print('CRIOU O ARQUIVO fake_credit_cards.csv')
 upload_file('fake_credit_cards.csv')
 
 df_fake_banks.to_csv('fake_banks.csv')
