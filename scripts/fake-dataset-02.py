@@ -41,13 +41,13 @@ LOCAL_FILE_PATH='fake_profile.csv'
 
 print('BUCKET_NAME', BUCKET_NAME)
 
-def upload_file(file_name_csv, file_name_parquet):
+def upload_file(folder_name,file_name_csv, file_name_parquet):
     # Upload the file
     s3_client = boto3.client('s3')
     try:
-        s3_client.upload_file(file_name_csv, BUCKET_NAME, f"csv/{file_name_csv}")
+        s3_client.upload_file(file_name_csv, BUCKET_NAME, f"csv/{folder_name}/{file_name_csv}")
         print(f"Arquivo CSV '{file_name_csv}' enviado com sucesso para o S3 em csv/{file_name_csv}.")
-        s3_client.upload_file(file_name_parquet, BUCKET_NAME, f"parquet/{file_name_parquet}")
+        s3_client.upload_file(file_name_parquet, BUCKET_NAME, f"parquet/{folder_name}/{file_name_parquet}")
         print(f"Arquivo Parquet '{file_name_parquet}' enviado com sucesso para o S3 em csv/{file_name_parquet}.")
     except:
         print(f"Arquivo CSV '{file_name_csv}' enviado com ERRO para o S3 em csv/{file_name_csv}.")
@@ -84,13 +84,13 @@ df_fake_banks = pd.DataFrame(fake_banks)
 
 df_fake_profile.to_csv('fake_profile.csv')
 df_fake_profile.to_parquet('fake_profile.parquet')
-upload_file('fake_profile.csv', 'fake_profile.parquet')
+upload_file('profile','fake_profile.csv', 'fake_profile.parquet')
 
 df_fake_credit_cards.to_csv('fake_credit_cards.csv')
-df_fake_credit_cards.to_parquet('df_fake_credit_cards.parquet')
-upload_file('fake_credit_cards.csv', 'df_fake_credit_cards.parquet')
+df_fake_credit_cards.to_parquet('fake_credit_cards.parquet')
+upload_file('credit_cards','fake_credit_cards.csv', 'fake_credit_cards.parquet')
 
 df_fake_banks.to_csv('fake_banks.csv')
-df_fake_banks.to_parquet('df_fake_banks.parquet')
-upload_file('fake_banks.csv', 'df_fake_banks.parquet')
+df_fake_banks.to_parquet('fake_banks.parquet')
+upload_file('bank','fake_banks.csv', 'fake_banks.parquet')
 
